@@ -43,26 +43,28 @@ function Input(Settings, input: InputObject, bool)
 	elseif input.UserInputType == Settings.Key then
 		Settings.Callback()
 	end
+
+	return Settings
 end
 
 function module:BeginInput(Settings)
 	checkSetting(Settings)
 	UserInputService.InputBegan:Connect(function(input, bool)
-		Input(Settings, input, bool)
+		return Input(Settings, input, bool)
 	end)
 end
 
 function module:EndInput(Settings)
 	checkSetting(Settings)
 	UserInputService.InputEnded:Connect(function(input, bool)
-		Input(Settings, input, bool)
+		return Input(Settings, input, bool)
 	end)
 end
 
 function module:ChangeInput(Settings)
 	checkSetting(Settings)
 	UserInputService.InputChanged:Connect(function(input, bool)
-		Input(Settings, input, bool)
+		return Input(Settings, input, bool)
 	end)
 end
 

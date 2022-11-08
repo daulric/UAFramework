@@ -1,1 +1,1 @@
-print("Hello world!")
+local UAF = require(game.ReplicatedStorage.UAFramework)

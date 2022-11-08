@@ -15,4 +15,12 @@ function module:GetAverage(...)
 	return require(script.GetAverage)(...)
 end
 
+function module:Add(...: number)
+	return require(script.Add)(...)
+end
+
+function module:Multiply(...: number)
+	return require(script.Multiply)(...)
+end
+
 return module

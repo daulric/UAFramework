@@ -23,9 +23,10 @@ function module.PrivateServerStarted(handler)
 			handler(player)
 		end
 	end)
+	
 end
 
-function module:ReserveServerStarted(handler)
+function module.ReserveServerStarted(handler)
 	if not module:IsReserveServer() then
 		return
 	end

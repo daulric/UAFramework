@@ -36,4 +36,6 @@ if RS:IsServer() then
 	print(script.Name, "| Loading Server Api")
 end
 
+print(script.Name, "| Finished Loading")
+
 return module

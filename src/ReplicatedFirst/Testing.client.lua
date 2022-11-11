@@ -3,15 +3,24 @@ local Storage = UAF.Storage
 local Player = game.Players.LocalPlayer
 
 local Stored = Storage.createStorage('hello')
-local Stored2 = Storage.createStorage("id")
 
 Stored:dump(
-    "hello",
-    "idk",
-    Player
+    "hello"
 )
 
-Stored2:dump("we are ulric")
+print("Storage First:", Stored:grab(), "- Previous:", Storage:GetStorageInfo())
 
-print(Stored:grab(), "Stored 1")
-print(Stored2:grab(), "Stored 2")
+Stored:UpdateStorage(function(oldData)
+    local Data = {
+        BitCoins = 10,
+        Coins = 100,
+        Etherium = 1000,
+        Fake = "fake",
+        oldData
+    }
+
+    return Data
+end)
+
+print(Stored:find("hello"))
+print("Updated Storage:", Stored:grab(), "- After:", Storage:GetStorageInfo())

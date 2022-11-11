@@ -5,9 +5,7 @@ local Storage = {}
 function module.createStorage(id: string)
     local self = {}
 
-    function self:dump(...)
-        local dumppy = table.pack(...)
-        dumppy.n = nil
+    function self:dump(Data)
 
         for index, _ in (Storage) do
             if index == id then
@@ -16,7 +14,7 @@ function module.createStorage(id: string)
             end
         end
 
-        Storage[id] = dumppy
+        Storage[id] = Data
     end
 
     function self:delete()
@@ -42,48 +40,46 @@ function module.createStorage(id: string)
             warn("this is nothing stored")
             return
         end
+
+        if not (type(Storage[id]) == "table") then
+            warn("You cant request a search if its not a table", "- ID:", id)
+            return
+        end
     
-        for _, value in pairs(Storage[id]) do
+        for index, value in pairs(Storage[id]) do
             if key == value then
                 return value
-            else
-                warn("couldn't find", key)
             end
+
+            if key == index then
+                return value
+            end
+
+            warn("couldn't find", key)
         end
     end
 
-    function self:mapStorage(...)
-        local pack = table.pack(...)
-        pack.n = nil
+    function self:UpdateStorage(handler)
+        local oldData = Storage[id]
+        local Data
 
-        local GatherData = {}
-
-        for _, value in pairs(Storage[id]) do
-            if table.find(pack, value) then
-                table.insert(GatherData, value)
-            end
+        if oldData == nil then
+            Data = handler()
         end
 
-        return GatherData
+        Data = handler(oldData)
+        Storage[id] = Data
+
     end
 
     return self
 end
 
-function module:UpdateStorage(id, handler)
-    local GetOldStorage = Storage[id]
-
-    local Data
-
-    if GetOldStorage == nil then
-        Data = handler()
+function module:GetStorageInfo(id)
+    if Storage[id] ~= nil then
+        return Storage[id]
     end
 
-    Data = handler(GetOldStorage)
-    Storage[id] = Data
-end
-
-function module:GetStorage()
     return Storage
 end
 

@@ -70,7 +70,7 @@ function module.createStorage(id: string)
     return self
 end
 
-function module:GetStoredValues()
+function module:GetStorage()
     return Storage
 end
 

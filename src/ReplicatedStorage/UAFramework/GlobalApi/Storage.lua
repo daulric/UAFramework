@@ -70,6 +70,19 @@ function module.createStorage(id: string)
     return self
 end
 
+function module:UpdateStorage(id, handler)
+    local GetOldStorage = Storage[id]
+
+    local Data
+
+    if GetOldStorage == nil then
+        Data = handler()
+    end
+
+    Data = handler(GetOldStorage)
+    Storage[id] = Data
+end
+
 function module:GetStorage()
     return Storage
 end

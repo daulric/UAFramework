@@ -14,10 +14,12 @@ export type Service = ClientClass | ServerClass | GlobalClass | AdvancedDataType
 
 -- Global Api
 module.Event = require(GlobalApi.UAEvent)
+module.Storage = require(GlobalApi.Storage)
 
 -- Advanced Data Types
 module.NTS = require(AdvancedDataTypes.NumberToString)
 module.Numbers = require(AdvancedDataTypes.Numbers)
+
 
 print(script.Name, "| Loading Global Api")
 

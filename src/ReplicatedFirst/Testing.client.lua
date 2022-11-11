@@ -2,15 +2,16 @@ local UAF = require(game:GetService("ReplicatedStorage"):WaitForChild("UAFramewo
 local Storage = UAF.Storage
 local Player = game.Players.LocalPlayer
 
-Storage:dump("hello",
-    "idk",
-    Player,
+local Stored = Storage.createStorage('hello')
+local Stored2 = Storage.createStorage("id")
+
+Stored:dump(
     "hello",
-    "wecare",
-    "drugs"
+    "idk",
+    Player
 )
 
-local str = Storage:grab("hello")
+Stored2:dump("we are ulric")
 
-local GetPlayer = Storage:mapStorage("hello", Player, "idk", "wecare")
-print(GetPlayer, "founded")
+print(Stored:grab(), "Stored 1")
+print(Stored2:grab(), "Stored 2")

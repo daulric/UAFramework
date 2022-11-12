@@ -23,8 +23,6 @@ module.Numbers = require(AdvancedDataTypes.Numbers)
 
 print(script.Name, "| Loading Global Api")
 
-print("we are ulric")
-
 if RS:IsClient() then
 	module.GuiClass = require(ClientApi.GuiClass)
 	module.InputClass = require(ClientApi.InputClass)

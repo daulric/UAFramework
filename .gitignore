@@ -9,3 +9,4 @@ src/ReplicatedStorage/DataManager.lua
 src/ReplicatedStorage/PlaceSystem.lua
 src/ReplicatedStorage/PrintTable.lua
 src/ReplicatedStorage/ProfileService.lua
+src/ReplicatedStorage/DataManager.lua

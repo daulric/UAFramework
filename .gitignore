@@ -22,3 +22,5 @@ src/ServerStorage/CircleProgressGui/init.meta.json
 src/StarterGui/AdvancedCAS.client.lua
 src/StarterPlayer/StarterCharacterScripts/Sliding.client.lua
 src/Workspace/repr.lua
+src/ReplicatedStorage/DataManager.lua
+src/ReplicatedStorage/DataManager.lua

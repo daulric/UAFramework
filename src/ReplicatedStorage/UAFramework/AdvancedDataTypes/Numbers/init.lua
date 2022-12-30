@@ -23,6 +23,14 @@ function module:Multiply(...: number)
 	return require(script.Multiply)(...)
 end
 
+function module:Subtract(num1: number, num2: number)
+	return require(script.Subtract)(num1, num2)
+end
+
+function module:Divide(num1: number, num2: number)
+	return require(script.Divide)(num1, num2)
+end
+
 function module:GetPercentage(number: number, totalnumber: number)
 	return require(script:WaitForChild("GetPercentage"))(number, totalnumber)
 end

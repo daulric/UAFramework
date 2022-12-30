@@ -28,8 +28,8 @@ return function(number)
 		local digits = Abbreviations[chosenAbbreviation]
 		local rounded = math.floor(number / 10 ^ (digits - 2)) * 10 ^ (digits - 2)
 		text = string.format("%.1f", rounded / 10 ^ (digits - 1))..chosenAbbreviation
-		return text
+		return "$"..text
 	else
-		return text
+		return "$"..text
 	end
 end

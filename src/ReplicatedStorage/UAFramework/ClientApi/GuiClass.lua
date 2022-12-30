@@ -1,154 +1,119 @@
 local module = {}
 local Event = script:FindFirstChildOfClass("BindableEvent")
 
-function module:EditTextButton(gui: TextButton, Settings)
-	
-	if not (typeof(Settings) == "table") then
-		warn("This is not a table")
-		return
-	end
-	
-	if Settings.Text ~= nil then
-		gui.Text = Settings.Text
-	end
-	
-	if Settings.Background ~= nil then
-		gui.BackgroundColor3 = Settings.Background
-	end
-	
-	local connection
-	if Settings.Callback ~= nil then
-		connection = gui.MouseButton1Click:Connect(Settings.Callback)
-	end
-	
-	if Settings.MouseEnterCallback ~= nil then
-		connection = gui.MouseEnter:Connect(Settings.MouseEnterCallback)
-	end
-	
-	if Settings.MouseExitCallback ~= nil then
-		connection = gui.MouseLeave:Connect(Settings.MouseExitCallback)
-	end
-	
-	function Settings:Stop()
-		if connection then
-			warn("Callback is Disconnecting")
-			return connection:Disconnect()
-		end
-	end
-	
-	return Settings
-end
-
-function module:EditImageButton(gui: ImageButton, Settings)
-	if not (typeof(Settings) == "table") then
-		warn("This is not a table")
-		return
-	end
-	
-	if Settings.Image ~= nil then
-		gui.Image = Settings.Image
-	end
-	
-	if Settings.HoverImage ~= nil then
-		gui.HoverImage = Settings.HoverImage
-	end
-	
-	if Settings.Background ~= nil then
-		gui.BackgroundColor3 = Settings.Background
-	end
-	
-	local Connection
-	if Settings.Callback ~= nil then
-		Connection = gui.MouseButton1Click:Connect(Settings.Callback)
-	end
-	
-	if Settings.MouseEnterCallback ~= nil then
-		Connection = gui.MouseEnter:Connect(Settings.MouseEnterCallback)
-	end
-
-	if Settings.MouseExitCallback ~= nil then
-		Connection = gui.MouseLeave:Connect(Settings.MouseExitCallback)
-	end
-	
-	function Settings:Stop()
-		warn("Connection Stoped", "Cant be used")
-		Connection:Disconnect()
-	end
-	
-	return Settings
-end
-
-function module:EditImage(gui: ImageLabel,Settings)
-	if not (typeof(Settings) == "table") then
-		warn("this is not a table")
-		return
-	end
-	
-	if Settings.Image ~= nil then
-		gui.Image = Settings.Image
-	end
-	
-	if Settings.Background ~= nil then
-		gui.BackgroundColor3 = Settings.Background
-	end
-	
-	return Settings
-end
-
-function module:EditFrame(gui: Frame, Settings)
-	if not (typeof(Settings) == "table") then
-		warn("this is not a table")
-		return
-	end
-
-	if Settings.Size ~= nil then
-		gui.Size = Settings.Size
-	end
-	
-	if Settings.Transparency ~= nil then
-		gui.BackgroundTransparency = Settings.Transparency
-	end
-
-	if Settings.Background ~= nil then
-		gui.BackgroundColor3 = Settings.Background
-	end
-	
-	if Settings.MouseEnterCallback ~= nil then
+function General(gui: GuiObject, Settings)
+	if Settings.MouseEnterCallback  then
 		gui.MouseEnter:Connect(Settings.MouseEnterCallback)
 	end
 
-	if Settings.MouseExitCallback ~= nil then
+	if Settings.MouseExitCallback then
 		gui.MouseLeave:Connect(Settings.MouseExitCallback)
 	end
-	
-	return Settings
+
+	if Settings.InputStart  then
+		gui.InputBegan:Connect(Settings.InputStart)
+	end
+
+	if Settings.InputEnd  then
+		gui.InputEnded:Connect(Settings.InputEnd)
+	end
+
+	if Settings.InputChanged  then
+		gui.InputChanged:Connect(Settings.InputChanged)
+	end
+
+	if Settings.WheelForward then
+		gui.MouseWheelForward:Connect(Settings.WheelForward)
+	end
+
+	if Settings.WheelBackward then
+		gui.MouseWheelBackward:Connect(Settings.WheelBackward)
+	end
 end
 
-function module:EditGeneralButton(gui: GuiButton, Settings)
+function module:EditButton(gui: GuiButton, Settings)
+
 	if not (typeof(Settings) == "table") then
 		warn("This is not a table")
 		return
 	end
 
-	local connection
-	if Settings.Callback ~= nil then
-		connection = gui.MouseButton1Click:Connect(Settings.Callback)
-	end
-	
-	if Settings.MouseEnterCallback ~= nil then
-		connection = gui.MouseEnter:Connect(Settings.MouseEnterCallback)
+	if gui:IsA("ImageButton") then
+		if Settings.Image then
+			gui.Image = Settings.Image
+		end
+
+		if Settings.PressedImage then
+			gui.PressedImage = Settings.PressedImage
+		end
 	end
 
-	if Settings.MouseExitCallback ~= nil then
-		connection = gui.MouseLeave:Connect(Settings.MouseExitCallback)
+	if gui:IsA("TextButton") then
+		if Settings.Text  then
+			gui.Text = Settings.Text
+		end
 	end
 
-	function Settings:Stop()
-		warn("Connection Stoped", "Cant be used")
-		connection:Disconnect()
+	if Settings.Background then
+		gui.BackgroundColor3 = Settings.Background
 	end
 	
-	return Settings
+	-- this for when the button is pressed
+	
+	if Settings.Callback then
+		gui.MouseButton1Click:Connect(Settings.Callback)
+	end
+	
+	if Settings.RightButtonCallback then
+		gui.MouseButton2Click:Connect(Settings.RightButtonCallback)
+	end
+	
+
+	if Settings.ButtonDown then
+		gui.MouseButton1Down:Connect(Settings.ButtonDown)
+	end
+
+	if Settings.ButtonUp then
+		gui.MouseButton1Up:Connect(Settings.ButtonUp)
+	end
+	
+	if Settings.RightButtonDown then
+		gui.MouseButton2Down:Connect(Settings.RightButtonDown)
+	end
+	
+	if Settings.RightButtonUp then
+		gui.MouseButton2Up:Connect(Settings.RightButtonUp)
+	end
+	
+	General(gui, Settings)
+	
+end
+
+function module:EditLabel(gui: GuiLabel, Settings)
+
+	if not (typeof(Settings) == "table") then
+		warn("This is not a table")
+		return
+	end
+
+	if gui:IsA("ImageLabel") then
+		if Settings.Image  then
+			gui.Image = Settings.Image
+		end
+	end
+
+	if gui:IsA("TextLabel") then
+		if Settings.Text  then
+			gui.Text = Settings.Text
+		end
+	end
+
+	if Settings.Background then
+		gui.BackgroundColor3 = Settings.Background
+	end
+	
+	General(gui, Settings)
+
 end
 
 return module

@@ -1,5 +1,5 @@
 {
-  "name": "UA Framework",
+  "name": "project",
   "tree": {
     "$className": "DataModel",
     "ReplicatedFirst": {
@@ -16,6 +16,11 @@
       "$className": "ServerScriptService",
       "$ignoreUnknownInstances": true,
       "$path": "src/ServerScriptService"
+    },
+    "ServerStorage": {
+      "$className": "ServerStorage",
+      "$ignoreUnknownInstances": true,
+      "$path": "src/ServerStorage"
     },
     "StarterGui": {
       "$className": "StarterGui",
@@ -35,6 +40,11 @@
         "$path": "src/StarterPlayer/StarterPlayerScripts"
       },
       "$ignoreUnknownInstances": true
+    },
+    "Workspace": {
+      "$className": "Workspace",
+      "$ignoreUnknownInstances": true,
+      "$path": "src/Workspace"
     }
   }
 }

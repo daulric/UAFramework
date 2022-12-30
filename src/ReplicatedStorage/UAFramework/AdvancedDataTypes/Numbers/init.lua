@@ -23,4 +23,8 @@ function module:Multiply(...: number)
 	return require(script.Multiply)(...)
 end
 
+function module:GetPercentage(number: number, totalnumber: number)
+	return require(script:WaitForChild("GetPercentage"))(number, totalnumber)
+end
+
 return module

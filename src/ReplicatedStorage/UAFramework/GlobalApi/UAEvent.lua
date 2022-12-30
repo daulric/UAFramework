@@ -8,9 +8,10 @@ local RS = game:GetService("RunService")
 local ErrorMessage = "No Signal Passed"
 
 local Listeners = {}
-local Storage = {}
 
 function module:ListenForEvent(id: string, func: RBXScriptSignal)
+	local id = tostring(id)
+	
 	if not (type(func) == "function") then
 		warn("This is not a function", id)
 	end
@@ -21,33 +22,20 @@ function module:ListenForEvent(id: string, func: RBXScriptSignal)
 			return
 		end
 	end
-
-	local id = ""..id
+	
+	if id == "" or id == " " then
+		print("You cannot have space in the event")
+		return
+	end
+	
 	local listener = {
 		Callback = func,
 	}
 
 	function listener:Stop()
 		local ReturnSignal = {}
-		
-		Storage[id] = Listeners[id]
 		Listeners[id] = nil
 		warn("ID: ", id, "has been disconnected")
-		
-		function ReturnSignal:Reconnect()
-			if Storage[id] == nil then return end
-			if Listeners[id] ~= nil then return end
-			
-			if Listeners[id] == nil then 
-				Listeners[id] = Storage[id]
-				RS.Heartbeat:Wait()
-				Storage[id] = nil
-				warn("reconnecting signal")
-				return
-			end
-		end
-		
-		return ReturnSignal
 	end
 
 	Listeners[id] = listener
@@ -56,14 +44,14 @@ function module:ListenForEvent(id: string, func: RBXScriptSignal)
 end
 
 function module:DisconnectAll()
-	RS.Heartbeat:Connect(function()
+	RS.Heartbeat:Once(function()
 		for i, _ in pairs(Listeners) do
 			Listeners[i] = nil
 		end
 	end)
 end
 
-function module:SendServer(id: string, ...)
+function module:SendServer(id: string, ...: any)
 	RemoteEvent:FireServer(id, ...)
 end
 
@@ -114,7 +102,7 @@ function OnClientListen(id: string, ...)
 
 end
 
-function OnComListen(id: string, ...)
+function OnComListen(id: string, ...: any)
 	if Listeners[id] == nil then
 		warn(ErrorMessage, "Bindable_Error", id)
 		return

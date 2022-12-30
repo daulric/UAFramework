@@ -26,15 +26,4 @@ function module.PrivateServerStarted(handler)
 	
 end
 
-function module.ReserveServerStarted(handler)
-	if not module:IsReserveServer() then
-		return
-	end
-	
-	game.Players.PlayerAdded:Connect(function(player)
-		handler(player)
-	end)
-	
-end
-
 return module

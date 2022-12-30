@@ -12,7 +12,3 @@ end
 IsServer:PrivateServerStarted(function(player)
     print(player.Name, "is the owner")
 end)
-
-IsServer:ReserveServerStarted(function()
-    print("functio run here")
-end)

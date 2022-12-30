@@ -3,84 +3,77 @@ local module = {}
 local Storage = {}
 
 function module.createStorage(id: string)
-    local self = {}
+	local self = {}
 
-    function self:dump(Data)
+	for index, _ in (Storage) do
+		if index == id then
+			warn("there is already an id")
+			return self
+		end
+	end
 
-        for index, _ in (Storage) do
-            if index == id then
-                warn("there is already an id")
-                return
-            end
-        end
+	function self:dump(Data)
 
-        Storage[id] = Data
-    end
+		if (typeof(Data) ~= "table") then
+			print("this is not a table! ID:", id)
+			return
+		end
+		
+		Storage[id] = Data
+	end
 
-    function self:delete()
-        if Storage[id] == nil then
-            warn("there is nothing stored with", id)
-            return
-        end
-    
-        Storage[id] = nil
-    end
+	function self:delete()
+		if Storage[id] == nil then
+			warn("there is nothing stored with", id)
+			return
+		end
 
-    function self:grab()
-        if Storage[id] == nil then
-            warn("there is nothing stored")
-            return
-        end
-    
-        return Storage[id]
-    end
+		Storage[id] = nil
+	end
 
-    function self:find(key)
-        if Storage[id] == nil then
-            warn("this is nothing stored")
-            return
-        end
+	function self:grab()
+		if Storage[id] == nil then
+			warn("there is nothing stored")
+			return
+		end
 
-        if not (type(Storage[id]) == "table") then
-            warn("You cant request a search if its not a table", "- ID:", id)
-            return
-        end
-    
-        for index, value in pairs(Storage[id]) do
-            if key == value then
-                return value
-            end
+		return Storage[id]
+	end
 
-            if key == index then
-                return value
-            end
+	function self:UpdateStorage(handler)
+		local oldData = Storage[id]
+		local Data
 
-            warn("couldn't find", key)
-        end
-    end
+		if oldData == nil then
+			Data = handler()
+		end
 
-    function self:UpdateStorage(handler)
-        local oldData = Storage[id]
-        local Data
+		Data = handler(oldData)
+		Storage[id] = Data
 
-        if oldData == nil then
-            Data = handler()
-        end
+	end
+	
+	function self:Sort(handler)
+		if (typeof(Storage[id]) ~= "table") then
+			print("this is not a table! ID:", id)
+			return
+		end
+		
+		table.sort(Storage[id], function(a, b)
+			return handler(a, b)
+		end)
+		
+	end
 
-        Data = handler(oldData)
-        Storage[id] = Data
-
-    end
-
-    return self
+	return self
 end
 
 function module:GetStorageInfo(id)
-    if Storage[id] ~= nil then
-        return Storage[id]
-    end
+	if Storage[id] ~= nil then
+		return Storage[id]
+	end
 
-    return Storage
+	return Storage
 end
 
 return module

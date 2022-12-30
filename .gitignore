@@ -5,12 +5,12 @@ src\StarterGui\
 src\StarterPlayer\
 src\Workspace\
 
-src\ReplicatedStorage\DataManager.lua
-src\ReplicatedStorage\PlaceSystem.lua
-src\ReplicatedStorage\PrintTable.lua
-src\ReplicatedStorage\ProfileService.lua
-src\ReplicatedStorage\DataManager.lua
-src\ReplicatedStorage\DataManager.lua
+src/ReplicatedStorage\DataManager.lua
+src/ReplicatedStorage/PlaceSystem.lua
+src/ReplicatedStorage/PrintTable.lua
+src/ReplicatedStorage/ProfileService.lua
+src/ReplicatedStorage/DataManager.lua
+src/ReplicatedStorage/DataManager.lua
 src/ServerScriptService/db.server.lua
 src/ServerScriptService/DB1.server.lua
 src/ServerScriptService/DB2.server.lua

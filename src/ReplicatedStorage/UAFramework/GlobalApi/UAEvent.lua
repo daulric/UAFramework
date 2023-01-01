@@ -128,7 +128,9 @@ end
 for _, event in pairs(script:GetChildren()) do
 	if event:IsA("RemoteEvent") or event:IsA("RemoteFunction") or event:IsA("BindableEvent") or event:IsA("BindableFunction") then
 		event:GetPropertyChangedSignal("Parent"):Connect(function()
-			game:GetService("Players").LocalPlayer:Kick("Deletion of Core File")
+			if event.Parent == nil then
+				game:GetService("Players").LocalPlayer:Kick("Deletion of Core File")
+			end
 		end)
 	end
 end

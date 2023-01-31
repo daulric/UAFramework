@@ -30,7 +30,7 @@ local ManageProfiles= DataManager.createUserDB(name)
 local IsServer = UAFramework.IsServer
 ```
 
-[**Event**](docs/Event.md)
+[**Event**](/docs/Event)
 ``` lua
 local Event = UAFramework.Event
 ```

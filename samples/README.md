@@ -1,3 +1,3 @@
 #### **Sample Links**
 
-[UserDatabase Sample](./UserDatabase)
+[UserDatabase Sample](./UserDatabase.md)

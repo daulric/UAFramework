@@ -15,18 +15,18 @@ local UAFramework = require(path.to.module)
 local DataManager = UAFramework.DataManager
 ```
 
-- [UserDatabase](./UserDatabase) - This is the Docs for managing the UserDatabase
+- [UserDatabase](./UserDatabase.md) - This is the Docs for managing the UserDatabase
 ``` lua
 local ManageProfiles= DataManager.createUserDB(name)
 ```
 
 
-[**IsServer**](./IsServer)
+[**IsServer**](./IsServer.md)
 ``` lua
 local IsServer = UAFramework.IsServer
 ```
 
-[**Event**](./Event)
+[**Event**](./Event.md)
 ``` lua
 local Event = UAFramework.Event
 ```

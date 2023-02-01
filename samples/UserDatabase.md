@@ -1,6 +1,6 @@
 # UserDatabase Sample
 
-[UserDatabase Documentation](/docs/UserDatabase)
+[UserDatabase Documentation](../docs/UserDatabase)
 
 This is a simple script for managing player datastore
 

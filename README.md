@@ -2,5 +2,7 @@
 
 The UAFramework is a collection of packages which was made to improve in the development of your game!
 
-- ## [**UAFramework Documentation**](docs/README.md)
-- ## [**UAFramework Sample Script**](samples/README.md)
+Pages for UAFramework Guide!
+
+- ### [**UAFramework Documentation**](docs/README.md)
+- ### [**UAFramework Sample Script**](samples/README.md)

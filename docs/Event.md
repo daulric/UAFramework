@@ -73,11 +73,11 @@ This sends and returns data from the client
 # **Methods to Send Data Either From Server To Server or Client To Client**
 
 ``` lua
-Event:FireDataToCom(id, ...)
+Event:Send(id, ...)
 ```
 This sends data to another server or client
 
 ``` lua
-Event:GetDataFromCom(id, ...)
+Event:Get(id, ...)
 ```
 This send and returns data from another server or client
